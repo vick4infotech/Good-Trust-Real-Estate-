@@ -7,6 +7,7 @@ import {
   KeyRound, Mail, MapPin, Menu, MessageCircle, MoveUpRight,
   Phone, Search, ShieldCheck, Sparkles, X,
 } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 import { SITE, createWhatsAppLink, properties } from './data';
 
 const A = '/assets/';
@@ -378,5 +379,5 @@ export default function App() {
   const location = useLocation();
   useEffect(() => { const id = setTimeout(() => setLoading(false), reduce ? 200 : 1450); return () => clearTimeout(id); }, [reduce]);
   useEffect(() => { document.body.style.overflow = loading ? 'hidden' : ''; return () => { document.body.style.overflow = ''; }; }, [loading]);
-  return <><a href="#page-content" className="skip-link">Skip to main content</a><ScrollProgress /><Loader visible={loading} /><Header /><RouteEffects /><div id="page-content"><AnimatePresence mode="wait" initial={false}><motion.div key={location.pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : .28 }}><Routes location={location}><Route path="/" element={<HomePage />} /><Route path="/listings" element={<ListingsPage />} /><Route path="/about" element={<AboutPage />} /><Route path="*" element={<NotFound />} /></Routes></motion.div></AnimatePresence></div><Footer /></>;
+  return <><a href="#page-content" className="skip-link">Skip to main content</a><ScrollProgress /><Loader visible={loading} /><Header /><RouteEffects /><div id="page-content"><AnimatePresence mode="wait" initial={false}><motion.div key={location.pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : .28 }}><Routes location={location}><Route path="/" element={<HomePage />} /><Route path="/listings" element={<ListingsPage />} /><Route path="/about" element={<AboutPage />} /><Route path="*" element={<NotFound />} /></Routes></motion.div></AnimatePresence></div><Footer /><Analytics /></>;
 }
